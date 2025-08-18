@@ -1,4 +1,5 @@
 //this is a factory function creating player.
+
 function createPlayer (player , marker){
     return{player , marker};
 }
@@ -16,7 +17,15 @@ function winning (){
 function gameControl(){
     const player1 = createPlayer("player1" , "X" );
     const player2 = createPlayer("player2" , "O");
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach((div)=>{
+        div.addEventListener("click",()=>{
+            div.innerHTML = player1.marker;
+            
+        });
+    });
 
 }
+gameControl();
 
 
