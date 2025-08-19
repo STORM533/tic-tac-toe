@@ -9,23 +9,33 @@ const gameBoard = (function (){
     return{arr};
 })();
 //conditions for winning
-function winning (){
+const winning = (function (){
     const winPattern = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-    
-}   
+    return{winPattern};
+})();
+  
 //creates player and starts game
 function gameControl(){
     let isFirstClick = true;
+   
     const player1 = createPlayer("player1" , "X" );
     const player2 = createPlayer("player2" , "O");
     const boxes = document.querySelectorAll(".box");
     boxes.forEach((div)=>{
         div.addEventListener("click",()=>{
+            let index = parseInt(div.id);
             if(isFirstClick){
                 div.innerHTML = player1.marker;
+                if(gameBoard.arr[index] == ""){
+                    gameBoard.arr[index]=player1.marker;
+                }
             }else{
                 div.innerHTML = player2.marker;
+                if(gameBoard.arr[index] == ""){
+                    gameBoard.arr[index]=player2.marker;
+                }
             }
+            console.log(gameBoard.arr);
             isFirstClick = !isFirstClick;
         });
     });
@@ -45,7 +55,7 @@ function displayController(){
     disp.appendChild(player2);
 }
 
-
+console.log(gameBoard.arr);
 displayController();
 gameControl();
 
