@@ -5,7 +5,7 @@ function createPlayer (player , marker){
 }
 //this is creating array using IIFEs
 const gameBoard = (function (){
-    let arr =  Array["","","","","","","","",""];
+    let arr = ["","","","","","","","",""];
     return{arr};
 })();
 //conditions for winning
@@ -15,17 +15,38 @@ function winning (){
 }   
 //creates player and starts game
 function gameControl(){
+    let isFirstClick = true;
     const player1 = createPlayer("player1" , "X" );
     const player2 = createPlayer("player2" , "O");
     const boxes = document.querySelectorAll(".box");
     boxes.forEach((div)=>{
         div.addEventListener("click",()=>{
-            div.innerHTML = player1.marker;
-            
+            if(isFirstClick){
+                div.innerHTML = player1.marker;
+            }else{
+                div.innerHTML = player2.marker;
+            }
+            isFirstClick = !isFirstClick;
         });
     });
-
 }
+//display 
+function displayController(){
+    const container = document.querySelector("body");
+    const display = document.createElement("div");
+    display.classList.add("disp");
+    container.appendChild(display);
+    const disp = document.querySelector(".disp");
+    const player1 = document.createElement("div");
+    const player2 = document.createElement("div");
+    player1.classList.add("player1");
+    player2.classList.add("player2");
+    disp.appendChild(player1);
+    disp.appendChild(player2);
+}
+
+
+displayController();
 gameControl();
 
 
