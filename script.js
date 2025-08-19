@@ -13,11 +13,22 @@ const winning = (function (){
     const winPattern = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
     return{winPattern};
 })();
+//checks winner
+function checkWinner(){
+    for(let i = 0;i<winning.winPattern.length; i++){
+        let [a , b , c] =winning.winPattern[i];
+        if(gameBoard.arr[a] =="X" && gameBoard.arr[b] =="X" && gameBoard.arr[c] == "X"){
+            console.log("player 1 wins");
+        }
+        if(gameBoard.arr[a] =="O" && gameBoard.arr[b] =="O" && gameBoard.arr[c] == "O"){
+            console.log("player 2 wins");
+        }
+    }
+}
   
 //creates player and starts game
 function gameControl(){
     let isFirstClick = true;
-   
     const player1 = createPlayer("player1" , "X" );
     const player2 = createPlayer("player2" , "O");
     const boxes = document.querySelectorAll(".box");
@@ -25,17 +36,18 @@ function gameControl(){
         div.addEventListener("click",()=>{
             let index = parseInt(div.id);
             if(isFirstClick){
-                div.innerHTML = player1.marker;
                 if(gameBoard.arr[index] == ""){
+                    div.innerHTML = player1.marker;
                     gameBoard.arr[index]=player1.marker;
+                    checkWinner();
                 }
             }else{
-                div.innerHTML = player2.marker;
                 if(gameBoard.arr[index] == ""){
+                    div.innerHTML = player2.marker;
                     gameBoard.arr[index]=player2.marker;
+                    checkWinner();
                 }
             }
-            console.log(gameBoard.arr);
             isFirstClick = !isFirstClick;
         });
     });
