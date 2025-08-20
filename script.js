@@ -30,17 +30,24 @@ function checkWinner(){
     for(let i = 0;i<winning.winPattern.length; i++){
         let [a , b , c] =winning.winPattern[i];
         if(gameBoard.arr[a] =="X" && gameBoard.arr[b] =="X" && gameBoard.arr[c] == "X"){
-            console.log(player.player1.player + " wins");
+            const winner = document.querySelector(".winner");
+            winner.innerHTML = player.player1.player + " wins";
             return true;
         }
         if(gameBoard.arr[a] =="O" && gameBoard.arr[b] =="O" && gameBoard.arr[c] == "O"){
-            console.log(player.player2.player + " wins");
+            const winner = document.querySelector(".winner");
+            winner.innerHTML = player.player2.player + " wins";
             return true;
         }
     }
+    if(!gameBoard.arr.includes("")){
+            const winner = document.querySelector(".winner");
+            winner.innerHTML = "TIE";
+            return true;    
+        }
 }
 //game working
-function gameControl(player1 , player2){
+function gameControl(){
     let isFirstClick = true;
     player1 = player.player1;
     player2 = player.player2;
@@ -54,8 +61,8 @@ function gameControl(player1 , player2){
                     div.style.color = "#ff7c01d3";
                     gameBoard.arr[index]=player1.marker;
                     if(checkWinner()){
-                        reset();
                         gameOff();
+                        reset();
                     }
                 }
             }else{
@@ -64,8 +71,8 @@ function gameControl(player1 , player2){
                     div.style.color = "#4907e2c4"
                     gameBoard.arr[index]=player2.marker;
                     if(checkWinner()){
-                        reset();
-                        gameOff();  
+                        gameOff();
+                        reset();  
                     }
                 }
             }
@@ -79,23 +86,28 @@ function gameOff(){
         box.style.pointerEvents = "none";
     });
 }
-//handle start,reset and control from UI
+//handle UI and name of players display 
 function displayController(){
-
+    const versus = document.querySelector(".game");
+    versus.innerHTML = player.player1.player + " V/S " +player.player2.player;
     
 }
 //resets the gameBoard
 function reset(){
     const reset = document.querySelector(".reset");
     reset.addEventListener("click" , () =>{
-        
         const boxes = document.querySelectorAll(".box");
         boxes.forEach((div) => {
             div.innerHTML = "";
+            const winner = document.querySelector(".winner");
+            winner.innerHTML = "";
         });
         for(let i = 0;i<gameBoard.arr.length;i++){
             gameBoard.arr[i] = "";
         }
+        document.querySelectorAll(".box").forEach(box =>{
+            box.style.pointerEvents = "auto";
+        });
     });
 
 }
@@ -109,13 +121,15 @@ function start(){
             alert("game won't start pls enter both player's name");
         }else{
             player.updateNames();
+            displayController();
             gameControl();
         }
     });
 }
+
 start();
-console.log(gameBoard.arr);
-displayController();
+
+
 
 
 

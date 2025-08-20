@@ -8,31 +8,36 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="btns">
-        <button class="start">START GAME</button>
-        <button class="reset">RESET</button>
-    </div>
-    
-    <div id="container">
-        <div id ="0" class="box"></div>
-        <div id ="1" class="box"></div>
-        <div id ="2" class="box"></div>
-        <div id ="3" class="box"></div>
-        <div id ="4" class="box"></div>
-        <div id ="5" class="box"></div>
-        <div id ="6" class="box"></div>
-        <div id ="7" class="box"></div>
-        <div id ="8" class="box"></div>
-    </div>
-    <div class="disp">
-        <div class="player1">
-            <label for="player1">PLAYER ONE</label>
-            <input type = "text" id="player1" name="player1" >
+    <div class="container">
+        <div class="btns">
+            <button class="start">START GAME</button>
+            <button class="reset">RESET</button>
         </div>
-        <div class="player2">
-            <label for="player2">PLAYER TWO</label>
-            <input type = "text" id="player2" name="player2" >
+        <div id="content">
+            <div id ="0" class="box"></div>
+            <div id ="1" class="box"></div>
+            <div id ="2" class="box"></div>
+            <div id ="3" class="box"></div>
+            <div id ="4" class="box"></div>
+            <div id ="5" class="box"></div>
+            <div id ="6" class="box"></div>
+            <div id ="7" class="box"></div>
+            <div id ="8" class="box"></div>
         </div>
+        <div class="disp">
+            <div class="player1">
+                <label for="player1">PLAYER ONE</label>
+                <input type = "text" id="player1" name="player1" >
+            </div>
+            <div class="player2">
+                <label for="player2">PLAYER TWO</label>
+                <input type = "text" id="player2" name="player2" >
+            </div>
+        </div>
+    </div>
+    <div class="versus">
+        <div class="game"></div>
+        <div class="winner"></div>
     </div>
 </body>
 </html>
