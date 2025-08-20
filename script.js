@@ -49,8 +49,10 @@ function checkWinner(){
 //game working
 function gameControl(){
     let isFirstClick = true;
-    player1 = player.player1;
-    player2 = player.player2;
+    let player1 = player.player1;
+    let player2 = player.player2;
+    const turn = document.querySelector(".turn");
+    turn.innerHTML = player1.player + " moves";
     const boxes = document.querySelectorAll(".box");
     boxes.forEach((div)=>{
         div.addEventListener("click",()=>{
@@ -58,6 +60,8 @@ function gameControl(){
             if(isFirstClick){
                 if(gameBoard.arr[index] == ""){
                     div.innerHTML = player1.marker;
+                    const turn = document.querySelector(".turn");
+                    turn.innerHTML = player2.player + " moves";
                     div.style.color = "#ff7c01d3";
                     gameBoard.arr[index]=player1.marker;
                     if(checkWinner()){
@@ -67,6 +71,8 @@ function gameControl(){
                 }
             }else{
                 if(gameBoard.arr[index] == ""){
+                    const turn = document.querySelector(".turn");
+                    turn.innerHTML = player1.player + " moves";
                     div.innerHTML = player2.marker;
                     div.style.color = "#4907e2c4"
                     gameBoard.arr[index]=player2.marker;

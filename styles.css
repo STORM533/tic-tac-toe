@@ -109,8 +109,8 @@ button:hover{
 }
 .versus{
     background-color:rgba(40, 112, 44, 0.507) ;
-    width: 600px;
-    height: 300px;
+    width: 700px;
+    height: 500px;
     box-shadow: 
     0 -4px 6px rgba(0, 0, 0, 0.1),  /* top shadow */
     0 4px 6px rgba(0, 0, 0, 0.1);   /* bottom shadow */
@@ -121,9 +121,9 @@ button:hover{
     align-items: center;
     gap: 50px;
 }
-.game , .winner {
+.game , .winner ,.turn{
     
-    width: 400px;
+    width: 500px;
     height: 100px;
     background-color: azure;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
