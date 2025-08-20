@@ -54,6 +54,7 @@ function gameControl(player1 , player2){
                     div.style.color = "#ff7c01d3";
                     gameBoard.arr[index]=player1.marker;
                     if(checkWinner()){
+                        reset();
                         gameOff();
                     }
                 }
@@ -63,6 +64,7 @@ function gameControl(player1 , player2){
                     div.style.color = "#4907e2c4"
                     gameBoard.arr[index]=player2.marker;
                     if(checkWinner()){
+                        reset();
                         gameOff();  
                     }
                 }
@@ -84,7 +86,17 @@ function displayController(){
 }
 //resets the gameBoard
 function reset(){
-    
+    const reset = document.querySelector(".reset");
+    reset.addEventListener("click" , () =>{
+        
+        const boxes = document.querySelectorAll(".box");
+        boxes.forEach((div) => {
+            div.innerHTML = "";
+        });
+        for(let i = 0;i<gameBoard.arr.length;i++){
+            gameBoard.arr[i] = "";
+        }
+    });
 
 }
 //takes names and starts the game
@@ -101,7 +113,6 @@ function start(){
         }
     });
 }
-
 start();
 console.log(gameBoard.arr);
 displayController();
