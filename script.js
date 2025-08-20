@@ -4,10 +4,17 @@ function createPlayer (player , marker){
 }
 //creating player 1 and 2 using IIFEs
 const player = (function(){
-    const player1 = createPlayer("player 1" , "X");
-    const player2 = createPlayer("player 2" , "O");
-    return{player1 , player2};
-})();
+    const player1 = createPlayer("" , "X");
+    const player2 = createPlayer("" , "O");
+    //this function updates the name of players
+    function updateNames(){
+        const name1 = document.querySelector("#player1").value;
+        const name2 = document.querySelector("#player2").value;
+        player1.player = name1 || "player 1";
+        player2.player = name2 || "player 2";
+    }
+    return{player1 , player2 , updateNames};
+})();   
 //this is creating array using IIFEs
 const gameBoard = (function (){
     let arr = ["","","","","","","","",""];
@@ -33,10 +40,10 @@ function checkWinner(){
     }
 }
 //game working
-function gameControl(){
+function gameControl(player1 , player2){
     let isFirstClick = true;
-    const player1 = player.player1;
-    const player2 = player.player2;
+    player1 = player.player1;
+    player2 = player.player2;
     const boxes = document.querySelectorAll(".box");
     boxes.forEach((div)=>{
         div.addEventListener("click",()=>{
@@ -70,14 +77,34 @@ function gameOff(){
         box.style.pointerEvents = "none";
     });
 }
-//display 
+//handle start,reset and control from UI
 function displayController(){
 
     
 }
+//resets the gameBoard
+function reset(){
+    
 
+}
+//takes names and starts the game
+function start(){
+    const start = document.querySelector(".start");
+    start.addEventListener("click" , () => {
+        const player1 = document.querySelector("#player1").value;
+        const player2 = document.querySelector("#player2").value;
+        if(player1.length == 0 && player2.length == 0){
+            alert("game won't start pls enter both player's name");
+        }else{
+            player.updateNames();
+            gameControl();
+        }
+    });
+}
+
+start();
 console.log(gameBoard.arr);
 displayController();
-gameControl();
+
 
 
